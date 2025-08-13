@@ -1,0 +1,37 @@
+﻿@model List<Semaninha.Models.Track>
+
+@{
+    ViewBag.Title = "Top Tracks do Usuário";
+    Layout = "_Layout";
+}
+
+<h1>Pesquisar Top Tracks de Usuário</h1>
+
+<form asp-controller="User" asp-action="GetTopTracks" method="post">
+    <div class="mb-3">
+        <label for="nomeUsuario" class="form-label">Nome do Usuário:</label>
+        <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Pesquisar</button>
+</form>
+
+@if (Model != null && Model.Any())
+{
+    <h2>Top Tracks:</h2>
+    <ul class="list-group mt-3">
+        @foreach (var track in Model)
+        {
+            <li class="list-group-item">
+                <strong>@track.Name</strong> - @track.Artist?.Name
+                <br />
+                Playcount: @track.Playcount
+                <br />
+                <a href="@track.Url" target="_blank">Ouvir no Last.fm</a>
+            </li>
+        }
+    </ul>
+}
+else if(Model != null)
+{
+    <p class="mt-3">Nenhuma faixa encontrada para este usuário.</p>
+}

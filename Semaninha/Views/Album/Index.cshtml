@@ -1,0 +1,30 @@
+﻿@model List<Album>
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h1>Pesquisar Álbum</h1>
+
+<form asp-action="Index" method="post" asp-controller="Album">
+    <label for="nomeAlbum">Nome do Álbum:</label>
+    <input type="text" id="nomeAlbum" name="nomeAlbum" required/>
+    <button type="submit">Pesquisar</button>
+</form>
+
+<hr />
+
+@if (Model != null && Model.Any())
+{
+    <ul>
+        @foreach (var a in Model)
+        {
+            <li>@a.Name - @a.Artist</li>
+        }
+    </ul>
+}
+else
+{
+    <p>Nenhum resultado encontrado.</p>
+}

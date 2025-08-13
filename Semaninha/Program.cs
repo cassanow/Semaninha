@@ -1,9 +1,17 @@
+using Semaninha.Interface;
+using Semaninha.Service;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddHttpClient();
+builder.Services.AddTransient<IAlbumService, AlbumService>();
+builder.Services.AddTransient<IUserService, UserService>();
+
 var app = builder.Build();
+
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
