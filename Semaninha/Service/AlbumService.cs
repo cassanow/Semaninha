@@ -16,7 +16,7 @@ public class AlbumService : IAlbumService
     public async Task<List<Album>> GetAlbum(string nomeAlbum)
     {
         var key = "1766bd528b32b4e1ab0dc6324067fd8a";
-        var url = $"https://ws.audioscrobbler.com/2.0/?method=album.search&album={nomeAlbum}&api_key={key}&format=json";
+        var url = $"https://ws.audioscrobbler.com/2.0/?method=album.search&album={nomeAlbum}&api_key={key}&format=json&limit=5";
         
         var response = await _client.GetAsync(url);
         
@@ -32,8 +32,7 @@ public class AlbumService : IAlbumService
            .Select(a => new Album
            {
                Name = a.GetProperty("name").GetString(),
-               Artist = a.GetProperty("artist").GetString(),
-               URL = a.GetProperty("url").GetString(),  
+               Url = a.GetProperty("url").GetString(),  
            }).ToList();
 
         return lista;

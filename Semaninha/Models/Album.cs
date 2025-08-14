@@ -8,8 +8,11 @@ public class Album
     public string Name { get; set; }
     
     [JsonPropertyName("artist")]
-    public string Artist { get; set; }
+    public Artist Artist { get; set; }
+    
+    [JsonPropertyName("playcount")]
+    public string Playcount { get; set; }
     
     [JsonPropertyName("url")]
-    public string URL { get; set; }
+    public string Url { get; set; }
 }

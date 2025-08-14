@@ -1,13 +1,13 @@
-﻿@model List<Semaninha.Models.Track>
+﻿@model List<Semaninha.Models.Album>
 
 @{
     ViewBag.Title = "Top Tracks do Usuário";
     Layout = "_Layout";
 }
 
-<h1>Top músicas do Usuário</h1>
+<h1>Top albuns do Usuário</h1>
 
-<form asp-controller="User" asp-action="GetTopTracks" method="post">
+<form asp-controller="User" asp-action="GetTopAlbums" method="post">
     <div class="mb-3">
         <label for="nomeUsuario" class="form-label">Nome do Usuário:</label>
         <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control" />
@@ -23,22 +23,20 @@
             </select>
         </div>
     </div>
-    
     <button type="submit" class="btn btn-primary">Pesquisar</button>
 </form>
 
 @if (Model != null && Model.Any())
 {
-    <h2>Top Tracks:</h2>
     <ul class="list-group mt-3">
-        @foreach (var track in Model)
+        @foreach (var album in Model)
         {
             <li class="list-group-item">
-                <strong>@track.Name</strong> - @track.Artist?.Name
+                <strong>@album.Name</strong> - @album.Artist?.Name
                 <br />
-                Playcount: @track.Playcount
+                Playcount: @album.Playcount
                 <br />
-                <a href="@track.Url" target="_blank">Link no Lastfm</a>
+                <a href="@album.Url" target="_blank">Link no LastFM</a>
             </li>
         }
     </ul>
