@@ -4,9 +4,10 @@ namespace Semaninha.Models;
 
 public class Image
 {
-    [JsonPropertyName("size")]
-    public string Size { get; set; }
     
-    [JsonPropertyName("#text")]
+    [JsonPropertyName("size")] 
+    public string Size { get; set; }
+
+    [JsonPropertyName("#text")] 
     public string Text { get; set; }
 }

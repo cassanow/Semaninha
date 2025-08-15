@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Semaninha.Interface;
-using Semaninha.Models;
 
 namespace Semaninha.Controllers;
 
@@ -12,7 +11,7 @@ public class UserController : Controller
     {
         _userService = userService;
     }
-    
+
     [HttpGet]
     public IActionResult GetTopTracks()
     {
@@ -23,7 +22,7 @@ public class UserController : Controller
     public async Task<IActionResult> GetTopTracks(string nomeUsuario, string period)
     {
         var topTracks = await _userService.GetUserTopTracks(nomeUsuario, period);
-       
+
         return View(topTracks);
     }
 
@@ -34,10 +33,10 @@ public class UserController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> GetTopAlbums(string nomeUsuario, string period)
+    public async Task<IActionResult> GetTopAlbums(string nomeUsuario, string period, int limit)
     {
-        var topAlbums = await _userService.GetUserTopAlbums(nomeUsuario, period);
-        
+        var topAlbums = await _userService.GetUserTopAlbums(nomeUsuario, period, limit);
+
         return View(topAlbums);
     }
 }

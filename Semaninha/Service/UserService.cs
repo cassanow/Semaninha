@@ -27,16 +27,16 @@ public class UserService : IUserService
         return resultado.TopTracks.Tracks;
     }
 
-    public async Task<List<Album>> GetUserTopAlbums(string username, string period)
+    public async Task<List<Album>> GetUserTopAlbums(string username, string period, int limit)
     {
         var key = "1766bd528b32b4e1ab0dc6324067fd8a";
         var url =
-            $"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={key}&format=json&period={period}";
-        
+            $"https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user={username}&api_key={key}&format=json&period={period}&limit={limit}";
+
         var response = await _httpClient.GetAsync(url);
-        
+
         var json = await response.Content.ReadAsStringAsync();
-        
+
         var resultado = JsonSerializer.Deserialize<TopAlbunsResponse>(json);
 
         return resultado.Albuns.Albuns;

@@ -1,20 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Semaninha.Interface;
-using Semaninha.Models;
 
 namespace Semaninha.Controllers;
 
 public class AlbumController : Controller
 {
-    
     private readonly IAlbumService _albumService;
 
     public AlbumController(IAlbumService albumService)
     {
-        _albumService = albumService;   
+        _albumService = albumService;
     }
-    
-    
+
+
     [HttpGet]
     public IActionResult Index()
     {
@@ -27,6 +25,5 @@ public class AlbumController : Controller
         var album = await _albumService.GetAlbum(nomeAlbum);
 
         return View(album);
-        
     }
 }

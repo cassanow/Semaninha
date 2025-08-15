@@ -4,6 +4,6 @@ namespace Semaninha.Models;
 
 public class TopTracks
 {
-    [JsonPropertyName("track")]
-    public List<Track> Tracks { get; set; } 
+    [JsonPropertyName("track")] 
+    public List<Track> Tracks { get; set; }
 }

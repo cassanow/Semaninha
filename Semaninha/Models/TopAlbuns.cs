@@ -4,6 +4,6 @@ namespace Semaninha.Models;
 
 public class TopAlbuns
 {
-    [JsonPropertyName("album")]
+    [JsonPropertyName("album")] 
     public List<Album> Albuns { get; set; }
 }

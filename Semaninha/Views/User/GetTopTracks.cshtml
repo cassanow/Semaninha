@@ -1,4 +1,4 @@
-﻿@model List<Semaninha.Models.Track>
+﻿@model List<Track>
 
 @{
     ViewBag.Title = "Top Tracks do Usuário";
@@ -10,7 +10,7 @@
 <form asp-controller="User" asp-action="GetTopTracks" method="post">
     <div class="mb-3">
         <label for="nomeUsuario" class="form-label">Nome do Usuário:</label>
-        <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control" />
+        <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control"/>
         <div class="mb-3">
             <label for="period">Período:</label>
             <select id="period" name="period" class="form-control">
@@ -35,15 +35,15 @@
         {
             <li class="list-group-item">
                 <strong>@track.Name</strong> - @track.Artist?.Name
-                <br />
+                <br/>
                 Playcount: @track.Playcount
-                <br />
+                <br/>
                 <a href="@track.Url" target="_blank">Link no Lastfm</a>
             </li>
         }
     </ul>
 }
-else if(Model != null)
+else if (Model != null)
 {
     <p class="mt-3">Nenhuma faixa encontrada para este usuário.</p>
 }
