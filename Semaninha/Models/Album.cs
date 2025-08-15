@@ -15,4 +15,7 @@ public class Album
 
     [JsonPropertyName("url")] 
     public string Url { get; set; }
+    
+    [JsonPropertyName("image")]
+    public List<Image> Image { get; set; }
 }

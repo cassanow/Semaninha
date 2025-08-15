@@ -5,14 +5,17 @@
     Layout = "_Layout";
 }
 
-<h1 id="titulo">Top albuns do Usuário</h1>
+<div class="d-flex flex-column justify-content-center align-items-center" style="min-height: 100vh; text-align:center;">
 
-<form asp-controller="User" asp-action="GetTopAlbums" method="post">
-    <div class="mb-3">
-        <label for="nomeUsuario" class="form-label">Nome do Usuário:</label>
-        <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control"/>
-        <div class="mb-3">
-            <label for="period">Período:</label>
+    <form asp-controller="User" asp-action="GetTopAlbums" method="post" class="d-flex flex-wrap justify-content-center align-items-end gap-3">
+
+        <div class="flex-grow-1" style="min-width:150px;">
+            <label for="nomeUsuario" class="form-label">User do Lastfm:</label>
+            <input type="text" id="nomeUsuario" name="nomeUsuario" required class="form-control"/>
+        </div>
+
+        <div style="min-width:150px;">
+            <label for="period" class="form-label">Período:</label>
             <select id="period" name="period" class="form-control">
                 <option value="7day">Últimos 7 dias</option>
                 <option value="1month">Último mês</option>
@@ -22,34 +25,33 @@
                 <option value="overall">Todo histórico</option>
             </select>
         </div>
-        <div class="mb-3">
-            <label for="limit">Quantidade:</label>
+
+        <div style="min-width:100px;">
+            <label for="limit" class="form-label">Quantidade:</label>
             <select id="limit" name="limit" class="form-control">
                 <option value="4">4 albuns</option>
                 <option value="8">8 albuns</option>
                 <option value="16">16 albuns</option>
             </select>
         </div>
-    </div>
-    <button id="botao" type="submit" class="btn btn-primary">Pesquisar</button>
-</form>
 
-@if (Model != null && Model.Any())
-{
-    <ul class="list-group mt-3">
-        @foreach (var album in Model)
-        {
-            <li class="list-group-item album-item">
-                <strong>@album.Name</strong> - @album.Artist?.Name
-                <br/>
-                Playcount: @album.Playcount
-                <br/>
-                <a href="@album.Url" target="_blank">Link no LastFM</a>
-            </li>
-        }
-    </ul>
-}
-else if (Model != null)
-{
-    <p class="mt-3">Nenhuma faixa encontrada para este usuário.</p>
-}
+        <div style="min-width:100px;">
+            <button id="botao" type="submit" class="btn btn-primary w-100">Pesquisar</button>
+        </div>
+
+    </form>
+
+    <br/>
+    @if (Model != null && Model.Any())
+    {
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); justify-items:center; margin-top:20px;">
+            @foreach (var album in Model)
+            {
+                <img src="@album.Image?.LastOrDefault(s => s.Size == "large")?.Url"
+                     alt="@album.Name"
+                     class="img-fluid rounded"
+                     style="width:150px;"/>
+            }
+        </div>
+    }
+</div>
